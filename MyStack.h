@@ -46,7 +46,6 @@ public:
       //Postcondition: The stack is changed and the top element is
       //    removed from the stack.
 
-
     StackType(int stackSize = 100); 
       //Constructor
       //Create an array of the size stackSize to hold 
@@ -64,9 +63,9 @@ public:
       //    elements is deleted.
 
 private:
-    int maxStackSize; //variable to store the maximum stack size
-    int stackTop;     //variable to point to the top of the stack
-    Type *list; //pointer to the array that holds the stack elements
+    int maxStackSize; 	//variable to store the maximum stack size
+    int stackTop;     	//variable to point to the top of the stack
+    Type *list; 		//pointer to the array that holds the stack elements
 
     void copyStack(const StackType<Type>& otherStack); 
       //Function to make a copy of otherStack.
@@ -74,6 +73,149 @@ private:
       //    to this stack.
 };
 
-     
+
+
+template <class Type>
+bool sameStack (StackType<Type> s, StackType<Type> w)
+// Tests whether two stacks contain the same elements
+// Returns true if the stacks contain the same elements.
+// Returns false otheriwse.
+// (Exam question uses pass by value)
+{
+	if (s.isEmptyStack() && w.isEmptyStack())	// both stacks are empty
+	{
+		return true;
+	}
+	
+	else if (s.isEmptyStack() || w.isEmptyStack())	// one of the stacks, but not both is empty
+	{
+		return false;
+	}
+	
+	else if (s.top() != w.top())	// the first elements differ
+	{
+		return false;
+	}
+	
+	else // both stacks are not empty
+	{
+		s.pop();
+		w.pop();
+		return sameStack(s, w);	// recursive function call
+	}
+}
+
+
+
+template <class Type>
+const StackType<Type>& StackType<Type>::operator=(const StackType<Type>& otherStack)
+{
+	if (this != &otherStack)	// avoid self-copy
+	{
+		copyStack(otherStack);
+	}
+	return *this;
+}
+
+
+template <class Type>
+void StackType<Type>::initializeStack()
+{
+	stackTop = 0;
+}
+
+template <class Type>
+bool StackType<Type>::isEmptyStack() const
+{
+	return (stackTop == 0);
+}
+
+template <class Type>
+bool StackType<Type>::isFullStack() const
+{
+	return (stackTop == maxStackSize);
+}
+
+template <class Type>
+void StackType<Type>::push(const Type& newItem)
+{
+	if (!isFullStack())	// make sure that the stack is not full (avoid overflow)
+	{
+		list[stackTop] = newItem;	// store newItem at the top of the stack
+		stackTop++;					// increment stackTop
+	}
+	
+	else
+	{
+		std::cout << "Cannot add to a full stack." << std::endl;
+	}
+}
+
+template <class Type>
+Type StackType<Type>::top() const
+{
+	assert (stackTop != 0);
+	return (list[stackTop - 1]);
+}
+
+template <class Type>
+void StackType<Type>::pop()
+{
+	if (!isEmptyStack())	// avoid underflow
+	{
+		stackTop--;
+	}
+	
+	else
+	{
+		std::cout << "Cannot remove from an empty stack." << std::endl;
+	}
+}
+
+template <class Type>
+StackType<Type>::StackType(int stackSize)
+{
+	if (stackSize <= 0)
+	{
+		std::cout << "Size of the array to hold the stack must be positive." << std::endl;
+		std::cout << "Creating array of size 100." << std::endl;
+		maxStackSize = 100;
+	}
+	
+	else
+	{
+		maxStackSize = stackSize;
+	}
+	stackTop = 0;
+	list = new Type[maxStackSize];
+}
+
+template <class Type>
+StackType<Type>::StackType(const StackType<Type>& otherStack)
+{
+	list = NULL;
+	copyStack(otherStack);
+}
+
+template <class Type>
+void StackType<Type>::copyStack(const StackType<Type>& otherStack)
+{
+	delete[] list;
+	maxStackSize = otherStack.maxStackSize;
+	stackTop = otherStack.stackTop;
+	list = new Type[maxStackSize];
+	
+	for (int j = 0; j < stackTop; j++)
+	{
+		list[j] = otherStack.list[j];
+	}
+}
+
+
+template <class Type>
+StackType<Type>::~StackType<Type>()
+{
+	delete[] list;
+}
 
 #endif

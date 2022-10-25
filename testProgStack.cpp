@@ -3,10 +3,84 @@
 #include <iostream>
 #include "MyStack.h"
 
- 
+void testCopyConstructor(StackType<int> otherStack);
+static void printStack(StackType<int> &theStack);
+
+
 int main()
 {
-	std::cout << "Example 7-1 shows how a stack is used." << std::endl;
-
+	StackType<int> stack(50);
+	StackType<int> copyStack(50);
+	StackType<int> dummyStack(100);
+	
+	stack.initializeStack();
+	stack.push(23);
+	stack.push(45);
+	stack.push(38);
+	copyStack = stack;	// copy stack into copyStack
+	
+	std::cout << "The elements of stack: ";
+	printStack(stack);
+	
+	std::cout << "The elements of copyStack: ";
+	printStack(copyStack);
+	
+	copyStack = stack;
+	testCopyConstructor(stack);	// test the copy constructor
+	
+	if (!stack.isEmptyStack())
+	{
+		std::cout 	<< "The original stack is not empty." << std::endl
+					<< "The top element of the original stack: "
+					<< copyStack.top() << std::endl;
+	}
+	
+	dummyStack = stack;	// copy stack into dummyStack
+	std::cout << "The elements of dummyStack: ";
+	printStack(dummyStack);
+	
+	
+	/// test sameStack
+	stack.push(100);
+	stack.push(200);
+	copyStack.push(200);
+	copyStack.push(100);
+	if (sameStack(stack, copyStack))
+	{
+		std::cout << "The stacks are identical" << std::endl;
+	}
+	
+	else
+	{
+		std::cout << "The stacks are different" << std::endl;
+	}
+	
+	std::cout << "The elements of stack: ";
+	printStack(stack);
+	
+	std::cout << "The elements of copyStack: ";
+	printStack(copyStack);
+	
 	return 0;
+}
+
+
+void testCopyConstructor(StackType<int> otherStack)
+{
+	if (!otherStack.isEmptyStack())
+	{
+		std::cout 	<< "otherStack is not empty." << std::endl
+					<< "The top element of otherStack: "
+					<< otherStack.top() << std::endl;
+	}
+}
+
+static void printStack(StackType<int> &theStack)
+{
+	while (!theStack.isEmptyStack())
+	{
+		std::cout << theStack.top() << " ";
+		theStack.pop();
+	}
+	std::cout << std::endl;
 }
