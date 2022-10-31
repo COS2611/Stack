@@ -86,17 +86,17 @@ bool sameStack (StackType<Type> s, StackType<Type> w)
 	{
 		return true;
 	}
-	
+
 	else if (s.isEmptyStack() || w.isEmptyStack())	// one of the stacks, but not both is empty
 	{
 		return false;
 	}
-	
+
 	else if (s.top() != w.top())	// the first elements differ
 	{
 		return false;
 	}
-	
+
 	else // both stacks are not empty
 	{
 		s.pop();
@@ -104,7 +104,6 @@ bool sameStack (StackType<Type> s, StackType<Type> w)
 		return sameStack(s, w);	// recursive function call
 	}
 }
-
 
 
 template <class Type>

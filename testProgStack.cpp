@@ -45,6 +45,7 @@ int main()
 	stack.push(200);
 	copyStack.push(200);
 	copyStack.push(100);
+	
 	if (sameStack(stack, copyStack))
 	{
 		std::cout << "The stacks are identical" << std::endl;
