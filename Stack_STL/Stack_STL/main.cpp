@@ -46,25 +46,27 @@ bool isInLanguageL(std::string w)
 	std::stack<char> s;
 	unsigned int index = 0;
 	
-	while (w[index] == 'a')	// add '-' to the stack for every occurrence of 'a'
+	// add '-' to the stack for every occurrence of 'a'
+	while (w[index] == 'a')
 	{
 		s.push('-');
 		index++;
 	}
 	
-	while (w[index] == 'b')	// pop the top element of the stack for every occurrence of 'b'
+	// remove '-' from the stack for every occurrence of 'b'
+	while (w[index] == 'b' && !s.empty())
 	{
 		s.pop();
 		index++;
 	}
 	
-	if (s.empty())	// if the stack is empty and index == wordlength: return true
+	// if the stack is empty: the word is in L
+	if (s.empty())
 	{
-		return index == w.length();
+		return index == w.size();
 	}
 	
-	// else return false
-	else
+	else // else the word is not in L
 	{
 		return false;
 	}
@@ -73,7 +75,7 @@ bool isInLanguageL(std::string w)
 
 int main()
 {
-	std::string w = "ab";
+	std::string w = "abb";
 	
 	if (isInLanguageL(w))
 	{
