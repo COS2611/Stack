@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stack>
+#include <string>
 
 template <class Type>
 static void print(std::stack<Type> &theStack)
@@ -12,21 +13,6 @@ static void print(std::stack<Type> &theStack)
 	std::cout << std::endl;
 }
 
-
-//template <class Type>
-//void printStack(std::stack<Type> &theStack)
-//{
-//	if (!theStack.empty())
-//	{
-//		std::cout << theStack.top() << " ";
-//		theStack.pop();
-//		return (printStack(&theStack));
-//	}
-//	else
-//	{
-//		return;
-//	}
-//}
 
 
 template <class Type>
@@ -55,49 +41,49 @@ bool identicalStack(std::stack<Type> &s1, std::stack<Type> &s2)
 }
 
 
+bool isInLanguageL(std::string w)
+{
+	std::stack<char> s;
+	unsigned int index = 0;
+	
+	while (w[index] == 'a')	// add '-' to the stack for every occurrence of 'a'
+	{
+		s.push('-');
+		index++;
+	}
+	
+	while (w[index] == 'b')	// pop the top element of the stack for every occurrence of 'b'
+	{
+		s.pop();
+		index++;
+	}
+	
+	if (s.empty())	// if the stack is empty and index == wordlength: return true
+	{
+		return index == w.length();
+	}
+	
+	// else return false
+	else
+	{
+		return false;
+	}
+}
+
+
 int main()
 {
-	std::stack<int> a;
-	std::stack<int> b;
+	std::string w = "ab";
 	
-	
-	a.push(1);
-	a.push(2);
-	a.push(3);
-	b = a;
-	
-
-	std::cout << "Built-in equality test:\n";
-	if (a == b)
+	if (isInLanguageL(w))
 	{
-		std::cout << "The stacks are identical" << std::endl;
+		std::cout << w << " is in the language L" << std::endl;
 	}
+	
 	else
 	{
-		std::cout << "The stacks are different" << std::endl;
+		std::cout << w << " is not in the language L" << std::endl;
 	}
-	
-	std::cout << "a: ";
-	print(a);
-	std::cout << "b: ";
-	print(b);
-	
-	std::cout << "User-defined equality test:\n";
-	if (identicalStack(a, b))
-	{
-		std::cout << "The stacks are identical" << std::endl;
-	}
-	else
-	{
-		std::cout << "The stacks are different" << std::endl;
-	}
-	
-	std::cout << "a: ";
-	print(a);
-	std::cout << "b: ";
-	print(b);
-	
-
 	
 	return 0;
 }
