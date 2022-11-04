@@ -50,7 +50,7 @@ public:
 	// copies the elements of a stack into another stack in reverse order
 	// postcondition: the contents of the destination stack are destroyed
 	// and the original stack remains unchanged
-
+	
     StackType(int stackSize = 100); 
       //Constructor
       //Create an array of the size stackSize to hold 
@@ -233,6 +233,46 @@ template <class Type>
 StackType<Type>::~StackType<Type>()
 {
 	delete[] list;
+}
+
+
+
+bool isInLanguageL(std::string w);
+// tests whether a word, w is in L, where w = a^nb^n
+// returns true if the number of a's and b's is the same
+// otherwise returns false
+
+
+//template <class Type>
+bool isInLanguageL(std::string w)
+{
+	StackType<char> s;
+	unsigned int index = 0;
+	
+	// add '-' to the stack for every occurrence of 'a'
+	while (w[index] == 'a')
+	{
+		s.push('-');
+		index++;
+	}
+	
+	// remove '-' from the stack for every occurrence of 'b'
+	while (w[index] == 'b' && !s.isEmptyStack())
+	{
+		s.pop();
+		index++;
+	}
+	
+	// if the stack is empty: the word is in L
+	if (s.isEmptyStack())
+	{
+		return index == w.size();
+	}
+	
+	else // else the word is not in L
+	{
+		return false;
+	}
 }
 
 #endif
