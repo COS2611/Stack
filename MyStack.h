@@ -45,6 +45,11 @@ public:
       //Precondition: The stack exists and is not empty.
       //Postcondition: The stack is changed and the top element is
       //    removed from the stack.
+	
+	void reverseStack(StackType<Type> &otherStack);
+	// copies the elements of a stack into another stack in reverse order
+	// postcondition: the contents of the destination stack are destroyed
+	// and the original stack remains unchanged
 
     StackType(int stackSize = 100); 
       //Constructor
@@ -102,6 +107,19 @@ bool sameStack (StackType<Type> s, StackType<Type> w)
 		s.pop();
 		w.pop();
 		return sameStack(s, w);	// recursive function call
+	}
+}
+
+
+template <class Type>
+void StackType<Type>::reverseStack(StackType<Type> &theStack)
+{
+	theStack.initializeStack();
+	
+	while (!this->isEmptyStack())
+	{
+		theStack.push(this->top());
+		this->pop();
 	}
 }
 
