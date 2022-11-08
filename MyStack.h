@@ -6,6 +6,16 @@
 #include "StackADT.h"
 
 
+bool isInLanguageL(std::string w);
+// tests whether a word, w is in L, where w = a^nb^n
+
+bool isInLanguageL2(std::string w);
+// tests whether a word, w is in L, where w = a^nb^n+1
+
+bool isInLanguageL3(std::string w);
+// tests whether a word, w is in L, where w = a^nb^n+1
+
+
 template <class Type>
 class StackType: public StackADT<Type>
 {
@@ -237,42 +247,147 @@ StackType<Type>::~StackType<Type>()
 
 
 
-bool isInLanguageL(std::string w);
-// tests whether a word, w is in L, where w = a^nb^n
-// returns true if the number of a's and b's is the same
-// otherwise returns false
 
-
-//template <class Type>
 bool isInLanguageL(std::string w)
 {
 	StackType<char> s;
-	unsigned int index = 0;
-	
-	// add '-' to the stack for every occurrence of 'a'
+	int index = 0;
 	while (w[index] == 'a')
 	{
-		s.push('-');
+		s.push('x');
 		index++;
 	}
-	
-	// remove '-' from the stack for every occurrence of 'b'
-	while (w[index] == 'b' && !s.isEmptyStack())
+		
+	while (w[index] == 'b')
 	{
-		s.pop();
+		if (!s.isEmptyStack())
+		{
+			if (s.top() == 'x')
+			{
+				s.pop();
+			}
+		}
+		else
+		{
+			return false;
+		}
 		index++;
 	}
-	
-	// if the stack is empty: the word is in L
-	if (s.isEmptyStack())
-	{
-		return index == w.size();
-	}
-	
-	else // else the word is not in L
-	{
-		return false;
-	}
+	return (index == w.length() && s.isEmptyStack());
 }
 
+
+bool isInLanguageL2(std::string w)
+{
+	StackType<char> s;
+	int index = 0;
+	while (w[index] == 'a')
+	{
+		s.push('x');
+		index++;
+	}
+	
+	// Special case: add an extra 'b', since L = {a^n, b^n+1}
+	if (w[index] == 'b')
+	{
+		s.push('x');
+	}
+	
+	while (w[index] == 'b')
+	{
+		if (!s.isEmptyStack())
+		{
+			if (s.top() == 'x')
+			{
+				s.pop();
+			}
+		}
+		else
+		{
+			return false;
+		}
+		index++;
+	}
+	return (index == w.length() && s.isEmptyStack());
+}
+
+
+bool isInLanguageL3(std::string w)
+{
+	StackType<char> s;
+	int index = 0;
+	while (w[index] == 'a')
+	{
+		s.push('x');
+		index++;
+	}
+	
+	// Special case: remove an extra 'b', since L = {a^n, b^n-1}
+	if (w[index] == 'b')
+	{
+		s.pop();
+	}
+	
+	while (w[index] == 'b')
+	{
+		if (!s.isEmptyStack())
+		{
+			if (s.top() == 'x')
+			{
+				s.pop();
+			}
+		}
+		else
+		{
+			return false;
+		}
+		index++;
+	}
+	return (index == w.length() && s.isEmptyStack());
+}
+
+
+// Alternative L2: passes test cases
+//bool isInLanguageL2(std::string w)
+//// accepts words with {a^n, b^n+1}, n>= 1
+//// this will require two stacks
+//{
+//	StackType<int> stackA;
+//	StackType<int> stackB;
+//	unsigned int index = 0;
+//	unsigned int aCount = 0;
+//	unsigned int bCount = 0;
+//
+//	while (w[index] == 'a')
+//	{
+//		stackA.push(index);
+//		index++;
+//		aCount++;
+//	}
+//
+//	while (w[index] == 'b')
+//	{
+//		stackB.push(index);
+//		index++;
+//		bCount++;
+//	}
+//
+//	while (!stackA.isEmptyStack() && !stackB.isEmptyStack())
+//	{
+//		stackA.pop();
+//		stackB.pop();
+//	}
+//
+//	if (stackA.isEmptyStack() && !stackB.isEmptyStack())
+//	{
+//		return bCount - aCount == 1;
+//	}
+//
+//	else
+//	{
+//		return false;
+//	}
+//}
+
 #endif
+

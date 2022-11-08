@@ -10,16 +10,17 @@ static void printStack(StackType<int> &theStack);
 
 int main()
 {
-	std::string w = "abb";
-	if (isInLanguageL(w))
+	std::string w = "aab";
+	if (isInLanguageL3(w))
 	{
-		std::cout << w << " is in the language L" << std::endl;
+		std::cout << w << " is in the language L3" << std::endl;
 	}
 	
 	else
 	{
-		std::cout << w << " is not in the language L" << std::endl;
+		std::cout << w << " is not in the language L3" << std::endl;
 	}
+	
 	
 	return 0;
 }
