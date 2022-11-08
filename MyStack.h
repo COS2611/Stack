@@ -91,7 +91,7 @@ private:
 
 
 template <class Type>
-bool sameStack (StackType<Type> s, StackType<Type> w)
+bool sameStack (StackType<Type> s, StackType<Type> w) // synonym: identicalStack
 // Tests whether two stacks contain the same elements
 // Returns true if the stacks contain the same elements.
 // Returns false otheriwse.
