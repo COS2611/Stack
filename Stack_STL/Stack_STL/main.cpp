@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stack>
 #include <string>
+#include <cassert>
 
 template <class Type>
 static void print(std::stack<Type> &theStack)
@@ -92,6 +93,7 @@ static void wordIsInLanguage()
 int main()
 {
 	wordIsInLanguage();
+	assert(!isInLanguageL("abb"));
 	
 	return 0;
 }
