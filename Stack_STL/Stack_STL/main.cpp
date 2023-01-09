@@ -4,12 +4,15 @@
 #include <cassert>
 
 template <class Type>
-static void print(std::stack<Type> &theStack)
+static void printStack(const std::stack<Type> &theStack)
 {
-	while (!theStack.isEmptyStack())
+	// create a copy of the stack to maintain its data
+	std::stack<Type> tempStack = theStack;
+	
+	while (!tempStack.empty())
 	{
-		std::cout << theStack.top() << " ";
-		theStack.pop();
+		std::cout << tempStack.top() << " ";
+		tempStack.pop();
 	}
 	std::cout << std::endl;
 }
@@ -38,6 +41,31 @@ bool identicalStack(std::stack<Type> &s1, std::stack<Type> &s2)
 		s1.pop();
 		s2.pop();
 		return identicalStack(s1, s2);
+	}
+}
+
+
+template <class Type>
+void transferStack(std::stack<Type>& s1, std::stack<Type>& s2)
+{
+	// Transfers elements from s1 to s2.
+	// The order of the elements is maintained.
+	
+	// Create a temp stack to store the elements from s1
+	std::stack<Type> tempStack;
+	
+	// Move elements from s1 to temp stack
+	while (!s1.empty())
+	{
+		tempStack.push(s1.top());
+		s1.pop();
+	}
+	
+	// Move elements from temp stack to s2
+	while (!tempStack.empty())
+	{
+		s2.push(tempStack.top());
+		tempStack.pop();
 	}
 }
 
@@ -92,8 +120,33 @@ static void wordIsInLanguage()
 
 int main()
 {
-	wordIsInLanguage();
-	assert(!isInLanguageL("abb"));
+	std::stack<int> myStack;
+	std::stack<int> yourStack;
+	
+	myStack.push(1);
+	myStack.push(2);
+	myStack.push(3);
+	myStack.push(4);
+	myStack.push(5);
+	
+	std::cout << "Before transfer:\n";
+	std::cout << "My stack: ";
+	printStack(myStack);
+	std::cout << "Your stack: ";
+	printStack(yourStack);
+	
+	transferStack(myStack, yourStack);
+	std::cout << "\nAfter transfer:\n";
+	std::cout << "My stack: ";
+	printStack(myStack);
+	std::cout << "Your stack: ";
+	printStack(yourStack);
+	std::cout << std::endl;
+	
+	// my stack must be empty after transfer
+	assert(myStack.empty());
+	
+	
 	
 	return 0;
 }
