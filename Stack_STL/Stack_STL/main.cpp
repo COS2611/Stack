@@ -118,7 +118,7 @@ static void wordIsInLanguage()
 }
 
 
-int main()
+static void test_transferStack()
 {
 	std::stack<int> myStack;
 	std::stack<int> yourStack;
@@ -145,8 +145,11 @@ int main()
 	
 	// my stack must be empty after transfer
 	assert(myStack.empty());
-	
-	
-	
+}
+
+int main()
+{
+	test_transferStack();
+		
 	return 0;
 }
