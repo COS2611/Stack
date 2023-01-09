@@ -73,7 +73,7 @@ bool isInLanguageL(std::string w)
 }
 
 
-int main()
+static void wordIsInLanguage()
 {
 	std::string w = "abb";
 	
@@ -86,6 +86,12 @@ int main()
 	{
 		std::cout << w << " is not in the language L" << std::endl;
 	}
+}
+
+
+int main()
+{
+	wordIsInLanguage();
 	
 	return 0;
 }
