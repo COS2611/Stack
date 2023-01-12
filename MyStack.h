@@ -1,5 +1,5 @@
-#ifndef H_StackType
-#define H_StackType
+#ifndef H_stackType
+#define H_stackType
  
 #include <iostream>
 #include <cassert>
@@ -17,10 +17,10 @@ bool isInLanguageL3(std::string w);
 
 
 template <class Type>
-class StackType: public StackADT<Type>
+class stackType: public StackADT<Type>
 {
 public:
-    const StackType<Type>& operator=(const StackType<Type>&); 
+    const stackType<Type>& operator=(const stackType<Type>&);
       //Overload the assignment operator.
 
     void initializeStack();
@@ -56,22 +56,22 @@ public:
       //Postcondition: The stack is changed and the top element is
       //    removed from the stack.
 	
-	void reverseStack(StackType<Type> &otherStack);
+	void reverseStack(stackType<Type> &otherStack);
 	// copies the elements of a stack into another stack in reverse order
 	// postcondition: the contents of the destination stack are destroyed
 	// and the original stack remains unchanged
 	
-    StackType(int stackSize = 100); 
+    stackType(int stackSize = 100);
       //Constructor
       //Create an array of the size stackSize to hold 
       //the stack elements. The default stack size is 100.
       //Postcondition: The variable list contains the base address 
       //   of the array, stackTop = 0, and maxStackSize = stackSize
 
-    StackType(const StackType<Type>& otherStack); 
+    stackType(const stackType<Type>& otherStack);
       //Copy constructor
 
-    ~StackType(); 
+    ~stackType();
       //Destructor
       //Remove all the elements from the stack.
       //Postcondition: The array (list) holding the stack 
@@ -82,7 +82,7 @@ private:
     int stackTop;     	//variable to point to the top of the stack
     Type *list; 		//pointer to the array that holds the stack elements
 
-    void copyStack(const StackType<Type>& otherStack); 
+    void copyStack(const stackType<Type>& otherStack);
       //Function to make a copy of otherStack.
       //Postcondition: A copy of otherStack is created and assigned
       //    to this stack.
@@ -91,7 +91,7 @@ private:
 
 
 template <class Type>
-bool sameStack (StackType<Type> s, StackType<Type> w) // synonym: identicalStack
+bool sameStack (stackType<Type> s, stackType<Type> w) // synonym: identicalStack
 // Tests whether two stacks contain the same elements
 // Returns true if the stacks contain the same elements.
 // Returns false otheriwse.
@@ -122,7 +122,7 @@ bool sameStack (StackType<Type> s, StackType<Type> w) // synonym: identicalStack
 
 
 template <class Type>
-void StackType<Type>::reverseStack(StackType<Type> &theStack)
+void stackType<Type>::reverseStack(stackType<Type> &theStack)
 {
 	theStack.initializeStack();
 	
@@ -135,7 +135,7 @@ void StackType<Type>::reverseStack(StackType<Type> &theStack)
 
 
 template <class Type>
-const StackType<Type>& StackType<Type>::operator=(const StackType<Type>& otherStack)
+const stackType<Type>& stackType<Type>::operator=(const stackType<Type>& otherStack)
 {
 	if (this != &otherStack)	// avoid self-copy
 	{
@@ -146,25 +146,25 @@ const StackType<Type>& StackType<Type>::operator=(const StackType<Type>& otherSt
 
 
 template <class Type>
-void StackType<Type>::initializeStack()
+void stackType<Type>::initializeStack()
 {
 	stackTop = 0;
 }
 
 template <class Type>
-bool StackType<Type>::isEmptyStack() const
+bool stackType<Type>::isEmptyStack() const
 {
 	return (stackTop == 0);
 }
 
 template <class Type>
-bool StackType<Type>::isFullStack() const
+bool stackType<Type>::isFullStack() const
 {
 	return (stackTop == maxStackSize);
 }
 
 template <class Type>
-void StackType<Type>::push(const Type& newItem)
+void stackType<Type>::push(const Type& newItem)
 {
 	if (!isFullStack())	// make sure that the stack is not full (avoid overflow)
 	{
@@ -179,14 +179,14 @@ void StackType<Type>::push(const Type& newItem)
 }
 
 template <class Type>
-Type StackType<Type>::top() const
+Type stackType<Type>::top() const
 {
 	assert (stackTop != 0);
 	return (list[stackTop - 1]);
 }
 
 template <class Type>
-void StackType<Type>::pop()
+void stackType<Type>::pop()
 {
 	if (!isEmptyStack())	// avoid underflow
 	{
@@ -200,7 +200,7 @@ void StackType<Type>::pop()
 }
 
 template <class Type>
-StackType<Type>::StackType(int stackSize)
+stackType<Type>::stackType(int stackSize)
 {
 	if (stackSize <= 0)
 	{
@@ -218,14 +218,14 @@ StackType<Type>::StackType(int stackSize)
 }
 
 template <class Type>
-StackType<Type>::StackType(const StackType<Type>& otherStack)
+stackType<Type>::stackType(const stackType<Type>& otherStack)
 {
 	list = NULL;
 	copyStack(otherStack);
 }
 
 template <class Type>
-void StackType<Type>::copyStack(const StackType<Type>& otherStack)
+void stackType<Type>::copyStack(const stackType<Type>& otherStack)
 {
 	delete[] list;
 	maxStackSize = otherStack.maxStackSize;
@@ -240,7 +240,7 @@ void StackType<Type>::copyStack(const StackType<Type>& otherStack)
 
 
 template <class Type>
-StackType<Type>::~StackType<Type>()
+stackType<Type>::~stackType<Type>()
 {
 	delete[] list;
 }
@@ -250,7 +250,7 @@ StackType<Type>::~StackType<Type>()
 
 bool isInLanguageL(std::string w)
 {
-	StackType<char> s;
+	stackType<char> s;
 	int index = 0;
 	while (w[index] == 'a')
 	{
@@ -279,7 +279,7 @@ bool isInLanguageL(std::string w)
 
 bool isInLanguageL2(std::string w)
 {
-	StackType<char> s;
+	stackType<char> s;
 	int index = 0;
 	while (w[index] == 'a')
 	{
@@ -314,7 +314,7 @@ bool isInLanguageL2(std::string w)
 
 bool isInLanguageL3(std::string w)
 {
-	StackType<char> s;
+	stackType<char> s;
 	int index = 0;
 	while (w[index] == 'a')
 	{
@@ -347,47 +347,33 @@ bool isInLanguageL3(std::string w)
 }
 
 
-// Alternative L2: passes test cases
-//bool isInLanguageL2(std::string w)
-//// accepts words with {a^n, b^n+1}, n>= 1
-//// this will require two stacks
-//{
-//	StackType<int> stackA;
-//	StackType<int> stackB;
-//	unsigned int index = 0;
-//	unsigned int aCount = 0;
-//	unsigned int bCount = 0;
-//
-//	while (w[index] == 'a')
-//	{
-//		stackA.push(index);
-//		index++;
-//		aCount++;
-//	}
-//
-//	while (w[index] == 'b')
-//	{
-//		stackB.push(index);
-//		index++;
-//		bCount++;
-//	}
-//
-//	while (!stackA.isEmptyStack() && !stackB.isEmptyStack())
-//	{
-//		stackA.pop();
-//		stackB.pop();
-//	}
-//
-//	if (stackA.isEmptyStack() && !stackB.isEmptyStack())
-//	{
-//		return bCount - aCount == 1;
-//	}
-//
-//	else
-//	{
-//		return false;
-//	}
-//}
+//Write a function transferStack that transfers  elements from stack S1 to stack S2. The order of the elements must remain as they were on the original stack S1. You may use one additional stack.
+template <class Type>
+void transferStack (stackType <Type> &S1, stackType<Type> &S2)
+{
+	stackType<Type> tempStack;
+	
+	// s1 is empty
+	if (S1.isEmptyStack())
+	{
+		std::cout << "The original stack is empty\n";
+		return;
+	}
+	
+	// transfer elements to temp stack
+	while (!S1.isEmptyStack() && !tempStack.isFullStack())
+	{
+		tempStack.push(S1.top());
+		S1.pop();
+	}
+	
+	// transer from temp stack to S2
+	while (!tempStack.isEmptyStack() && !S2.isFullStack())
+	{
+		S2.push(tempStack.top());
+		tempStack.pop();
+	}
+}
 
 #endif
 

@@ -4,8 +4,6 @@
 #include <string>
 #include "MyStack.h"
 
-void testCopyConstructor(StackType<int> otherStack);
-static void printStack(StackType<int> &theStack);
 
 // test case: COS2611-06-2020: Q4.1
 static void testIsInLanguageL2() {
@@ -20,7 +18,7 @@ static void testIsInLanguageL2() {
 	std::cout << c + s3 << std::endl;
 }
 
-void testCopyConstructor(StackType<int> otherStack)
+void testCopyConstructor(stackType<int> otherStack)
 {
 	if (!otherStack.isEmptyStack())
 	{
@@ -30,7 +28,8 @@ void testCopyConstructor(StackType<int> otherStack)
 	}
 }
 
-static void printStack(StackType<int> &theStack)
+template <class Type>
+static void printStack(stackType<Type> theStack)
 {
 	while (!theStack.isEmptyStack())
 	{
@@ -45,8 +44,8 @@ static void testSameStack() {
 	
 	// test case 1: both stacks are empty
 	{
-		StackType<char> s1;
-		StackType<char> s2;
+		stackType<char> s1;
+		stackType<char> s2;
 		
 		if (sameStack(s1, s2))
 		{
@@ -60,8 +59,8 @@ static void testSameStack() {
 	
 	// test case 2: only one stack is empty
 	{
-		StackType<char> s1;
-		StackType<char> s2;
+		stackType<char> s1;
+		stackType<char> s2;
 		
 		s1.push('a');
 		s1.push('e');
@@ -82,8 +81,8 @@ static void testSameStack() {
 	// Test case 3: Both stacks are non-empty, but top elements differ
 	// at some point
 	{
-		StackType<char> s1;
-		StackType<char> s2;
+		stackType<char> s1;
+		stackType<char> s2;
 		
 		s1.push('a');
 		s1.push('e');
@@ -109,8 +108,8 @@ static void testSameStack() {
 	
 	// Test case 4: Both stacks are non-empty and the same
 	{
-		StackType<char> s1;
-		StackType<char> s2;
+		stackType<char> s1;
+		stackType<char> s2;
 		
 		s1.push('a');
 		s1.push('e');
@@ -136,8 +135,8 @@ static void testSameStack() {
 }
 
 static void testSameStack_case() {
-	StackType<char> s1;
-	StackType<char> s2;
+	stackType<char> s1;
+	stackType<char> s2;
 	
 	s1.push('a');
 	s1.push('e');
@@ -161,11 +160,38 @@ static void testSameStack_case() {
 	}
 }
 
+static void test_transferStack()
+{
+	stackType<int> myStack;
+	stackType<int> yourStack;
+	
+	myStack.push(1);
+	myStack.push(2);
+	myStack.push(3);
+	myStack.push(4);
+	myStack.push(5);
+	
+	std::cout << "Before transfer:\n";
+	std::cout << "My stack: ";
+	printStack(myStack);
+	std::cout << "Your stack: ";
+	printStack(yourStack);
+	
+	transferStack(myStack, yourStack);
+	std::cout << "\nAfter transfer:\n";
+	std::cout << "My stack: ";
+	printStack(myStack);
+	std::cout << "Your stack: ";
+	printStack(yourStack);
+	std::cout << std::endl;
+	
+	// my stack must be empty after transfer
+	assert(myStack.isEmptyStack());
+}
+
 int main()
 {
-	// test sameStack
-	testSameStack();
-	
+	test_transferStack();
 	
 	return 0;
 }
