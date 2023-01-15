@@ -351,28 +351,7 @@ bool isInLanguageL3(std::string w)
 template <class Type>
 void transferStack (stackType <Type> &S1, stackType<Type> &S2)
 {
-	stackType<Type> tempStack;
-	
-	// s1 is empty
-	if (S1.isEmptyStack())
-	{
-		std::cout << "The original stack is empty\n";
-		return;
-	}
-	
-	// transfer elements to temp stack
-	while (!S1.isEmptyStack() && !tempStack.isFullStack())
-	{
-		tempStack.push(S1.top());
-		S1.pop();
-	}
-	
-	// transer from temp stack to S2
-	while (!tempStack.isEmptyStack() && !S2.isFullStack())
-	{
-		S2.push(tempStack.top());
-		tempStack.pop();
-	}
+	// TODO: implement me
 }
 
 #endif
