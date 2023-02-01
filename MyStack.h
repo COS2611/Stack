@@ -13,7 +13,7 @@ bool isInLanguageL2(std::string w);
 // tests whether a word, w is in L, where w = a^nb^n+1
 
 bool isInLanguageL3(std::string w);
-// tests whether a word, w is in L, where w = a^nb^n+1
+// tests whether a word, w is in L, where w = a^nb^n-1
 
 
 template <class Type>
