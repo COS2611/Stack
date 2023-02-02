@@ -247,7 +247,7 @@ stackType<Type>::~stackType<Type>()
 
 
 
-
+// L = {a^n b^n}
 bool isInLanguageL(std::string w)
 {
 	stackType<char> s;
@@ -260,12 +260,9 @@ bool isInLanguageL(std::string w)
 		
 	while (w[index] == 'b')
 	{
-		if (!s.isEmptyStack())
+		if (!s.isEmptyStack() && s.top() == 'x')
 		{
-			if (s.top() == 'x')
-			{
-				s.pop();
-			}
+			s.pop();
 		}
 		else
 		{
@@ -277,6 +274,7 @@ bool isInLanguageL(std::string w)
 }
 
 
+// L = {a^n, b^n+1}
 bool isInLanguageL2(std::string w)
 {
 	stackType<char> s;
@@ -295,12 +293,9 @@ bool isInLanguageL2(std::string w)
 	
 	while (w[index] == 'b')
 	{
-		if (!s.isEmptyStack())
+		if (!s.isEmptyStack() && s.top() == 'x')
 		{
-			if (s.top() == 'x')
-			{
-				s.pop();
-			}
+			s.pop();
 		}
 		else
 		{
@@ -311,9 +306,12 @@ bool isInLanguageL2(std::string w)
 	return (index == w.length() && s.isEmptyStack());
 }
 
-
+// L = {a^n b ^n-1}
 bool isInLanguageL3(std::string w)
 {
+	// Special case: The word is "a" (no b's present)
+	if (w == "a") { return true; }
+	
 	stackType<char> s;
 	int index = 0;
 	while (w[index] == 'a')
@@ -327,15 +325,12 @@ bool isInLanguageL3(std::string w)
 	{
 		s.pop();
 	}
-	
+
 	while (w[index] == 'b')
 	{
-		if (!s.isEmptyStack())
+		if (!s.isEmptyStack() && s.top() == 'x')
 		{
-			if (s.top() == 'x')
-			{
-				s.pop();
-			}
+			s.pop();
 		}
 		else
 		{
@@ -347,32 +342,12 @@ bool isInLanguageL3(std::string w)
 }
 
 
+
 //Write a function transferStack that transfers  elements from stack S1 to stack S2. The order of the elements must remain as they were on the original stack S1. You may use one additional stack.
 template <class Type>
 void transferStack (stackType <Type> &S1, stackType<Type> &S2)
 {
-	stackType<Type> tempStack;
-	
-	// s1 is empty
-	if (S1.isEmptyStack())
-	{
-		std::cout << "The original stack is empty\n";
-		return;
-	}
-	
-	// transfer elements to temp stack
-	while (!S1.isEmptyStack() && !tempStack.isFullStack())
-	{
-		tempStack.push(S1.top());
-		S1.pop();
-	}
-	
-	// transer from temp stack to S2
-	while (!tempStack.isEmptyStack() && !S2.isFullStack())
-	{
-		S2.push(tempStack.top());
-		tempStack.pop();
-	}
+	// TODO: implement me
 }
 
 #endif

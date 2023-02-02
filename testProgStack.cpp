@@ -5,17 +5,59 @@
 #include "MyStack.h"
 
 
-// test case: COS2611-06-2020: Q4.1
-static void testIsInLanguageL2() {
-	std::string a = "aaaabbbbb";
-	std::string b = "aaababbbbb";
+// L = {a^n b^n}
+static void testIsInLanguageL()
+{
+	std::string a = "ab";
+	std::string b = "aabb";
 	std::string c = "aaaabbbbba";
-	std::string s1 = isInLanguageL2(a) ? " is ACCEPTED" : " is REJECTED";
-	std::string s2 = isInLanguageL2(b) ? " is ACCEPTED" : " is REJECTED";
-	std::string s3 = isInLanguageL2(c) ? " is ACCEPTED" : " is REJECTED";
+	std::string s1 = isInLanguageL(a) ? " is ACCEPTED" : " is REJECTED";
+	std::string s2 = isInLanguageL(b) ? " is ACCEPTED" : " is REJECTED";
+	std::string s3 = isInLanguageL(c) ? " is ACCEPTED" : " is REJECTED";
 	std::cout << a + s1 << std::endl;
 	std::cout << b + s2 << std::endl;
 	std::cout << c + s3 << std::endl;
+}
+
+// test case: COS2611-06-2020: Q4.1
+// L2 = {a^n b^n+1}
+static void testIsInLanguageL2()
+{
+	std::string a = "abb";
+	std::string b = "aabbb";
+	std::string c = "aaaabbbbb";
+	std::string d = "aaaabbbbba";
+	std::string s1 = isInLanguageL2(a) ? " is ACCEPTED" : " is REJECTED";
+	std::string s2 = isInLanguageL2(b) ? " is ACCEPTED" : " is REJECTED";
+	std::string s3 = isInLanguageL2(c) ? " is ACCEPTED" : " is REJECTED";
+	std::string s4 = isInLanguageL2(d) ? " is ACCEPTED" : " is REJECTED";
+	std::cout << a + s1 << std::endl;
+	std::cout << b + s2 << std::endl;
+	std::cout << c + s3 << std::endl;
+	std::cout << d + s4 << std::endl;
+}
+
+// L = {a^n b^n-1}
+static void testIsInLanguageL3()
+{
+	std::string a = "a";
+	std::string b = "aab";
+	std::string c = "aaabb";
+	std::string d = "aaaba";
+	std::string s1 = isInLanguageL3(a) ? " is ACCEPTED" : " is REJECTED";
+	std::string s2 = isInLanguageL3(b) ? " is ACCEPTED" : " is REJECTED";
+	std::string s3 = isInLanguageL3(c) ? " is ACCEPTED" : " is REJECTED";
+	std::string s4 = isInLanguageL3(d) ? " is ACCEPTED" : " is REJECTED";
+	std::cout << a + s1 << std::endl;
+	std::cout << b + s2 << std::endl;
+	std::cout << c + s3 << std::endl;
+	std::cout << d + s4 << std::endl;
+	
+	assert(isInLanguageL3("aab") == true);
+	assert(isInLanguageL3("aaabb") == true);
+	assert(isInLanguageL3("ab") == false);
+	assert(isInLanguageL3("a") == true);
+
 }
 
 void testCopyConstructor(stackType<int> otherStack)
@@ -191,7 +233,16 @@ static void test_transferStack()
 
 int main()
 {
-	test_transferStack();
+//	test_transferStack();
+	
+	std::cout << "\nTesting isInLanguageL:\n";
+	testIsInLanguageL();
+	
+	std::cout << "\nTesting isInLanguageL2:\n";
+	testIsInLanguageL2();
+	
+	std::cout << "\nTesting isInLanguageL3:\n";
+	testIsInLanguageL3();
 	
 	return 0;
 }
