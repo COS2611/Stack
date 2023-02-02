@@ -250,95 +250,20 @@ stackType<Type>::~stackType<Type>()
 // L = {a^n b^n}
 bool isInLanguageL(std::string w)
 {
-	stackType<char> s;
-	int index = 0;
-	while (w[index] == 'a')
-	{
-		s.push('x');
-		index++;
-	}
-		
-	while (w[index] == 'b')
-	{
-		if (!s.isEmptyStack() && s.top() == 'x')
-		{
-			s.pop();
-		}
-		else
-		{
-			return false;
-		}
-		index++;
-	}
-	return (index == w.length() && s.isEmptyStack());
+	// TODO: implement me
 }
 
 
 // L = {a^n, b^n+1}
 bool isInLanguageL2(std::string w)
 {
-	stackType<char> s;
-	int index = 0;
-	while (w[index] == 'a')
-	{
-		s.push('x');
-		index++;
-	}
-	
-	// Special case: add an extra 'b', since L = {a^n, b^n+1}
-	if (w[index] == 'b')
-	{
-		s.push('x');
-	}
-	
-	while (w[index] == 'b')
-	{
-		if (!s.isEmptyStack() && s.top() == 'x')
-		{
-			s.pop();
-		}
-		else
-		{
-			return false;
-		}
-		index++;
-	}
-	return (index == w.length() && s.isEmptyStack());
+	// TODO: implement me
 }
 
 // L = {a^n b ^n-1}
 bool isInLanguageL3(std::string w)
 {
-	// Special case: The word is "a" (no b's present)
-	if (w == "a") { return true; }
-	
-	stackType<char> s;
-	int index = 0;
-	while (w[index] == 'a')
-	{
-		s.push('x');
-		index++;
-	}
-	
-	// Special case: remove an extra 'b', since L = {a^n, b^n-1}
-	if (w[index] == 'b')
-	{
-		s.pop();
-	}
-
-	while (w[index] == 'b')
-	{
-		if (!s.isEmptyStack() && s.top() == 'x')
-		{
-			s.pop();
-		}
-		else
-		{
-			return false;
-		}
-		index++;
-	}
-	return (index == w.length() && s.isEmptyStack());
+	// TODO: implement me
 }
 
 
