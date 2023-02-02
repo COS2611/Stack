@@ -233,7 +233,7 @@ static void test_transferStack()
 
 int main()
 {
-//	test_transferStack();
+	test_transferStack();
 	
 	std::cout << "\nTesting isInLanguageL:\n";
 	testIsInLanguageL();
