@@ -27,6 +27,7 @@
 		5EDD733928F521B60081F67B /* StackADT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StackADT.h; sourceTree = "<group>"; };
 		5EDD733A28F521E20081F67B /* MyStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyStack.h; sourceTree = "<group>"; };
 		5EDD733B28F521E20081F67B /* testProgStack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testProgStack.cpp; sourceTree = "<group>"; };
+		5EDF1022299A8C6A0042FE91 /* tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tests.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +44,7 @@
 		5EDD732628F521690081F67B = {
 			isa = PBXGroup;
 			children = (
+				5EDF1022299A8C6A0042FE91 /* tests.h */,
 				5EDD733928F521B60081F67B /* StackADT.h */,
 				5EDD733A28F521E20081F67B /* MyStack.h */,
 				5EDD733B28F521E20081F67B /* testProgStack.cpp */,
