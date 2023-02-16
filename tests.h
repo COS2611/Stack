@@ -14,56 +14,105 @@
 // L = {a^n b^n}
 static void testIsInLanguageL()
 {
-	std::string a = "ab";
-	std::string b = "aabb";
-	std::string c = "aaaabbbbba";
-	std::string s1 = isInLanguageL(a) ? " is ACCEPTED" : " is REJECTED";
-	std::string s2 = isInLanguageL(b) ? " is ACCEPTED" : " is REJECTED";
-	std::string s3 = isInLanguageL(c) ? " is ACCEPTED" : " is REJECTED";
-	std::cout << a + s1 << std::endl;
-	std::cout << b + s2 << std::endl;
-	std::cout << c + s3 << std::endl;
+	std::string empty = "";
+	std::string a = "a";
+	std::string b = "b";
+	std::string ab = "ab";
+	std::string aab = "aab";
+	std::string abb = "abb";
+	std::string aabb = "aabb";
+	std::string aaaba = "aaaba";
+	std::string aaabb = "aaabb";
+	std::string aabbb = "aabbb";
+	std::string aaabbbb = "aaabbbb";
+	std::string aaaabbbbb = "aaaabbbbb";
+	std::string aaaabbbbba = "aaaabbbbba";
+	std::string aaababbbbb = "aaababbbbb";
+	assert(isInLanguageL(empty) == false);
+	assert(isInLanguageL(a) == false);
+	assert(isInLanguageL(b) == false);
+	assert(isInLanguageL(ab) == true);
+	assert(isInLanguageL(aab) == false);
+	assert(isInLanguageL(abb) == false);
+	assert(isInLanguageL(aabb) == true);
+	assert(isInLanguageL(aaaba) == false);
+	assert(isInLanguageL(aaabb) == false);
+	assert(isInLanguageL(aabbb) == false);
+	assert(isInLanguageL(aaabbbb) == false);
+	assert(isInLanguageL(aaaabbbbb) == false);
+	assert(isInLanguageL(aaaabbbbba) == false);
+	assert(isInLanguageL(aaababbbbb) == false);
+	
 }
 
 // test case: COS2611-06-2020: Q4.1
 // L2 = {a^n b^n+1}
 static void testIsInLanguageL2()
 {
-	std::string a = "abb";
-	std::string b = "aabbb";
-	std::string c = "aaaabbbbb";
-	std::string d = "aaaabbbbba";
-	std::string s1 = isInLanguageL2(a) ? " is ACCEPTED" : " is REJECTED";
-	std::string s2 = isInLanguageL2(b) ? " is ACCEPTED" : " is REJECTED";
-	std::string s3 = isInLanguageL2(c) ? " is ACCEPTED" : " is REJECTED";
-	std::string s4 = isInLanguageL2(d) ? " is ACCEPTED" : " is REJECTED";
-	std::cout << a + s1 << std::endl;
-	std::cout << b + s2 << std::endl;
-	std::cout << c + s3 << std::endl;
-	std::cout << d + s4 << std::endl;
+	std::string empty = "";
+	std::string a = "a";
+	std::string b = "b";
+	std::string ab = "ab";
+	std::string aab = "aab";
+	std::string abb = "abb";
+	std::string aabb = "aabb";
+	std::string aaaba = "aaaba";
+	std::string aaabb = "aaabb";
+	std::string aabbb = "aabbb";
+	std::string aaabbbb = "aaabbbb";
+	std::string aaaabbbbb = "aaaabbbbb";
+	std::string aaaabbbbba = "aaaabbbbba";
+	std::string aaababbbbb = "aaababbbbb";
+	assert(isInLanguageL2(empty) == false);
+	assert(isInLanguageL2(a) == false);
+	assert(isInLanguageL2(b) == false);
+	assert(isInLanguageL2(ab) == false);
+	assert(isInLanguageL2(aab) == false);
+	assert(isInLanguageL2(abb) == true);
+	assert(isInLanguageL2(aabb) == false);
+	assert(isInLanguageL2(aaaba) == false);
+	assert(isInLanguageL2(aaabb) == false);
+	assert(isInLanguageL2(aabbb) == true);
+	assert(isInLanguageL2(aaabbbb) == true);
+	assert(isInLanguageL2(aaaabbbbb) == true);
+	assert(isInLanguageL2(aaaabbbbba) == false);
+	assert(isInLanguageL2(aaababbbbb) == false);
+	
 }
 
 // L = {a^n b^n-1}
 static void testIsInLanguageL3()
 {
+	std::string empty = "";
 	std::string a = "a";
-	std::string b = "aab";
-	std::string c = "aaabb";
-	std::string d = "aaaba";
-	std::string s1 = isInLanguageL3(a) ? " is ACCEPTED" : " is REJECTED";
-	std::string s2 = isInLanguageL3(b) ? " is ACCEPTED" : " is REJECTED";
-	std::string s3 = isInLanguageL3(c) ? " is ACCEPTED" : " is REJECTED";
-	std::string s4 = isInLanguageL3(d) ? " is ACCEPTED" : " is REJECTED";
-	std::cout << a + s1 << std::endl;
-	std::cout << b + s2 << std::endl;
-	std::cout << c + s3 << std::endl;
-	std::cout << d + s4 << std::endl;
+	std::string b = "b";
+	std::string ab = "ab";
+	std::string aab = "aab";
+	std::string abb = "abb";
+	std::string aabb = "aabb";
+	std::string aaaba = "aaaba";
+	std::string aaabb = "aaabb";
+	std::string aabbb = "aabbb";
+	std::string aaabbbb = "aaabbbb";
+	std::string aaaabbbbb = "aaaabbbbb";
+	std::string aaaabbbbba = "aaaabbbbba";
+	std::string aaababbbbb = "aaababbbbb";
+	assert(isInLanguageL3(empty) == false);
+	assert(isInLanguageL3(a) == true);
+	assert(isInLanguageL3(b) == false);
+	assert(isInLanguageL3(ab) == false);
+	assert(isInLanguageL3(aab) == true);
+	assert(isInLanguageL3(abb) == false);
+	assert(isInLanguageL3(aabb) == false);
+	assert(isInLanguageL3(aaaba) == false);
+	assert(isInLanguageL3(aaabb) == true);
+	assert(isInLanguageL3(aabbb) == false);
+	assert(isInLanguageL3(aaabbbb) == false);
+	assert(isInLanguageL3(aaaabbbbb) == false);
+	assert(isInLanguageL3(aaaabbbbba) == false);
+	assert(isInLanguageL3(aaababbbbb) == false);
 	
-	assert(isInLanguageL3("aab") == true);
-	assert(isInLanguageL3("aaabb") == true);
-	assert(isInLanguageL3("ab") == false);
-	assert(isInLanguageL3("a") == true);
-
+	
 }
 
 template <class Type>
