@@ -253,7 +253,8 @@ bool isInLanguageL(std::string w)
 	stackType<char> s;
 	int index = 0;
 	
-	if (w.length() < 2) // only accept words with minimum length of 2
+	// min word length: 2, shortest word: "ab"
+	if (w.length() < 2)
 	{
 		return false;
 	}
@@ -263,6 +264,7 @@ bool isInLanguageL(std::string w)
 		s.push('x');
 		index++;
 	}
+	
 	while (w[index] == 'b')
 	{
 		if (!s.isEmptyStack() && s.top() == 'x')
@@ -285,7 +287,8 @@ bool isInLanguageL2(std::string w)
 	stackType<char> s;
 	int index = 0;
 	
-	if (w.length() < 2) // only accept words with minimum length of 2
+	// min word length: 3, shortest word: "abb"
+	if (w.length() < 3)
 	{
 		return false;
 	}
@@ -301,7 +304,7 @@ bool isInLanguageL2(std::string w)
 		s.push('x');
 	}
 	
-	while (w[index] == 'b')
+	while (w[index] == 'b' && !s.isFullStack())
 	{
 		if (!s.isEmptyStack() && s.top() == 'x')
 		{
@@ -322,14 +325,16 @@ bool isInLanguageL3(std::string w)
 	stackType<char> s;
 	int index = 0;
 	
-	if (w == "a")	// accept 'a'
-	{
-		return true;
-	}
-	
-	if (w.length() < 1)	//reject null string
+	// min word length: 1, shortest word: "a"
+	if (w.length() < 1)
 	{
 		return false;
+	}
+	
+	// accept "a"
+	if (w == "a")
+	{
+		return true;
 	}
 	
 	while (w[index] == 'a')
@@ -338,7 +343,8 @@ bool isInLanguageL3(std::string w)
 		index++;
 	}
 	
-	if (w[index] == 'b')
+	// remove an extra 'b'
+	if (w[index] == 'b' && !s.isEmptyStack())
 	{
 		s.pop();
 	}
