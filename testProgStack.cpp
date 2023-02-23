@@ -10,6 +10,7 @@ int main()
 	testIsInLanguageL();
 	testIsInLanguageL2();
 	testIsInLanguageL3();
+	test_reverseS();
 	
 	return 0;
 }

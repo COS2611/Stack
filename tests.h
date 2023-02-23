@@ -285,4 +285,21 @@ static void test_transferStack()
 	assert(myStack.isEmptyStack());
 }
 
+static void test_reverseS()
+{
+	stackType<int> myStack;
+	myStack.push(5);
+	myStack.push(4);
+	myStack.push(3);
+	myStack.push(2);
+	myStack.push(1);
+	
+	std::cout << "My stack before reverse: ";
+	printStack(myStack);
+	
+	reverseS(myStack);
+	std::cout << "My stack after reverse: ";
+	printStack(myStack);
+}
+
 #endif /* tests_h */
