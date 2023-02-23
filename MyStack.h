@@ -3,6 +3,7 @@
  
 #include <iostream>
 #include <cassert>
+#include <queue>
 #include "StackADT.h"
 
 
@@ -390,6 +391,28 @@ void transferStack (stackType <Type> &S1, stackType<Type> &S2)
 	{
 		S2.push(tempStack.top());
 		tempStack.pop();
+	}
+}
+
+// ---------------------------------------------------------------------------
+/// Non-member functions
+// ---------------------------------------------------------------------------
+template <class Type>
+void reverseS(stackType<Type> &s)
+{
+	// non-member function that uses a local queue to reverse a stack
+	std::queue<Type> localQueue;
+		
+	while (!s.isEmptyStack())
+	{
+		localQueue.push(s.top());
+		s.pop();
+	}
+	
+	while (!localQueue.empty())
+	{
+		s.push(localQueue.front());
+		localQueue.pop();
 	}
 }
 
